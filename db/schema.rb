@@ -11,11 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909102351) do
+ActiveRecord::Schema.define(version: 20140918165843) do
+
+  create_table "bill_tables", force: true do |t|
+    t.float    "total_price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bills", force: true do |t|
+    t.integer  "bill_id"
+    t.string   "item_id"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", force: true do |t|
+    t.string   "code_id"
+    t.float    "price"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
