@@ -14,12 +14,11 @@
 
 <%= form_for([@bill_table, Bill.new]) do |f| %>
   <div class="field">
-    <%= f.label :item_id %><br>
-    <%= f.text_field :item_id %>
+  	<%= f.select :item_id, Item.all{{ |c| [c.name, c.id, {'data-currency_code'=>c.code_id}] }} %>
   </div>
   <div class="field">
     <%= f.label :number %><br>
-    <%= f.number_field :number %>
+    <%= f.number_field :number, value: 0 %>
   </div>
  <p><%= f.submit "Add" %></p>
 <% end %>
