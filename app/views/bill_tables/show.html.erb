@@ -1,9 +1,27 @@
 <p id="notice"><%= notice %></p>
 
+<h2>detail<h2>
+<div id='bill'>
+  <% @bill_table.bills.each do |bill| %>
+   <%=div_for bill do%>
+    <p><%= h(bill.item_id)%> | <%= h(bill.number)%><p>
+   <% end %>
+  <% end %>
 <p>
   <strong>Total price:</strong>
   <%= @bill_table.total_price %>
 </p>
 
+<%= form_for([@bill_table, Bill.new]) do |f| %>
+  <div class="field">
+    <%= f.label :item_id %><br>
+    <%= f.text_field :item_id %>
+  </div>
+  <div class="field">
+    <%= f.label :number %><br>
+    <%= f.number_field :number %>
+  </div>
+ <p><%= f.submit "Add" %></p>
+<% end %>
 <%= link_to 'Edit', edit_bill_table_path(@bill_table) %> |
 <%= link_to 'Back', bill_tables_path %>

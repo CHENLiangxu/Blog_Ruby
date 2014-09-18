@@ -24,12 +24,13 @@ class BillsController < ApplicationController
   # POST /bills
   # POST /bills.json
   def create
-    @bill = Bill.new(bill_params)
+    @bill_table = BillTable.find(params[:bill_table_id])
+    @bill = @bill_table.bills.new(bill_params)
 
     respond_to do |format|
       if @bill.save
-        format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
-        format.json { render :show, status: :created, location: @bill }
+        format.html { redirect_to @bill_table, notice: 'Bill was successfully created.' }
+        format.json { render :show, status: :created, location: @bill_table }
       else
         format.html { render :new }
         format.json { render json: @bill.errors, status: :unprocessable_entity }
