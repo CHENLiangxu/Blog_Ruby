@@ -1,6 +1,6 @@
 class BillTablesController < ApplicationController
   before_action :set_bill_table, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate, only: [:destroy]
   # GET /bill_tables
   # GET /bill_tables.json
   def index
@@ -71,4 +71,10 @@ class BillTablesController < ApplicationController
     def bill_table_params
       params.require(:bill_table).permit(:total_price)
     end
+
+    def authenticate
+      authenticate_or_request_with_http_basic do |name, password|
+        name == "chen" && password == "3323428"
+      end
+    end 
 end

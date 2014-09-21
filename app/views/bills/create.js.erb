@@ -1,0 +1,4 @@
+var new_bill = $("<%= escape_javascript(render(:partial => @bill_table.bills)) %>").hide();
+$('#bills').prepend(new_bill);
+$('#bill_<%= @bill.id %>').fadeIn("slow");
+$('#new_bill')[0].reset();

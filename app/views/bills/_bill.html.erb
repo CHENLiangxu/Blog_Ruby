@@ -1,0 +1,12 @@
+<%=div_for bill do%>
+    <% item = Item.find(bill.item_id)%>
+    <tr>
+      <td><%= h(item.code_id)%></td>
+      <td><%= h(item.name)%></td>
+      <td><%= h(item.price)%></td>
+      <td><%= h(bill.number)%></td>
+      <td><%= h(item.price*bill.number)%></td>
+      <td><%= link_to 'Destroy', bill_path(bill, table_id: @bill_table.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% $total_price = $total_price + item.price*bill.number %>
+<% end %>
