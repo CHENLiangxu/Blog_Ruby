@@ -1,20 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<h2>detail<h2>
+<h2>Detail<h2>
 <div id='bill'>
+  <table class="bill_table">
+    <tr><td>id</td><td>name</td><td>price</td><td>quantity</td><td>total</td><td>operate</td></tr>
+  <% $total_price = 0 %>
   <% @bill_table.bills.each do |bill| %>
    <%=div_for bill do%>
-    <p><%= h(bill.item_id)%> | <%= h(bill.number)%><p>
+    <% item = Item.find(bill.item_id)%>
+    <tr>
+      <td><%= h(item.code_id)%></td>
+      <td><%= h(item.name)%></td>
+      <td><%= h(item.price)%></td>
+      <td><%= h(bill.number)%></td>
+      <td><%= h(item.price*bill.number)%></td>
+      <td><%= link_to 'Destroy', bill_path(bill, table_id: @bill_table.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% $total_price = $total_price + item.price*bill.number %>
    <% end %>
   <% end %>
+</table>
 <p>
   <strong>Total price:</strong>
+  <% @bill_table.total_price = $total_price %>
+  <% @bill_table.save() %>
   <%= @bill_table.total_price %>
 </p>
 
 <%= form_for([@bill_table, Bill.new]) do |f| %>
+  <%= f.label :item_code %><br>
   <div class="field">
-  	<%= f.select :item_id, Item.all{{ |c| [c.name, c.id, {'data-currency_code'=>c.code_id}] }} %>
+  <%= f.select :item_id, Item.all.collect{ |c| [c.code_id, c.id] } %>
   </div>
   <div class="field">
     <%= f.label :number %><br>

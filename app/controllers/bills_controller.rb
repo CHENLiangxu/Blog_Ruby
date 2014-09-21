@@ -55,9 +55,10 @@ class BillsController < ApplicationController
   # DELETE /bills/1
   # DELETE /bills/1.json
   def destroy
+    @bill_table = BillTable.find(params[:table_id])
     @bill.destroy
     respond_to do |format|
-      format.html { redirect_to bills_url, notice: 'Bill was successfully destroyed.' }
+      format.html { redirect_to @bill_table, notice: 'Bill was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

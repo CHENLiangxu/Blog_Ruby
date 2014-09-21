@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
   resources :items
+  resources :bills
   resources :bill_tables do
     resources :bills
   end 

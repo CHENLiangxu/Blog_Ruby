@@ -1,3 +1,12 @@
 // Place all the styles related to the bill_tables controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.bill_table {
+	color : #003824;
+	width:60%;
+	border-collapse:collapse;
+	table-layout:auto;
+	vertical-align:top;
+	margin-bottom:15px;
+	border:2px solid #CCCCCC;
+}
