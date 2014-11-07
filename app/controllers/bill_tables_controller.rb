@@ -69,7 +69,7 @@ class BillTablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bill_table_params
-      params.require(:bill_table).permit(:total_price)
+      params.require(:bill_table).permit(:total_price, :comment)
     end
 
     def authenticate

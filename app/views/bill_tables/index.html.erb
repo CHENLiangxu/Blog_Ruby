@@ -12,6 +12,8 @@
     <% @bill_tables.each do |bill_table| %>
       <tr>
         <td><%= bill_table.total_price %></td>
+        <td><%= bill_table.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td><%= bill_table.comment %></td>
         <td><%= link_to 'Show', bill_table %></td>
         <td><%= link_to 'Edit', edit_bill_table_path(bill_table) %></td>
         <td><%= link_to 'Destroy', bill_table, method: :delete, data: { confirm: 'Are you sure?' } %></td>

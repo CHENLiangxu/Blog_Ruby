@@ -5,6 +5,7 @@
       <td><%= h(item.name)%></td>
       <td><%= h(item.price)%></td>
       <td><%= h(bill.number)%></td>
+      <td><%= h(bill.comment)%></td>
       <td><%= h(item.price*bill.number)%></td>
       <td><%= link_to 'Destroy', bill_path(bill, table_id: @bill_table.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
