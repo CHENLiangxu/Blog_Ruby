@@ -7,7 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to 'item', items_path %> | <%= link_to 'bill table', bill_tables_path %> | <%= link_to 'blog', posts_path %>
+	<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="welcome/index">出货系统</a>
+          </div>
+      <ul class="nav navbar-nav">
+          <li><%= link_to 'item/产品清单', items_path%></li>
+          <li><%= link_to 'bill table/账单', bill_tables_path %></li>
+          <li><%= link_to 'blog/留言', posts_path %></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+    </nav>
+
 <%= yield %>
 
 </body>

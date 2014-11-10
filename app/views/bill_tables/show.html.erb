@@ -1,7 +1,10 @@
+<div class="jumbotron">
 <p id="notice"><%= notice %></p>
-
-<h2>Detail<h2>
-<div id='bill'>
+</div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+<div class="panel-heading">账单信息:</div>
+  <div class="panel-body">
   <table class="table">
     <tr><td>id</td><td>name</td><td>price</td><td>quantity</td><td>total</td><td>comment</td><td>operate</td></tr>
   <% $total_price = 0 %>
@@ -13,34 +16,46 @@
       <td><%= h(item.name)%></td>
       <td><%= h(item.price)%></td>
       <td><%= h(bill.number)%></td>
-      <td><%= h(item.price*bill.number)%></td>
+      <td><%= (item.price*bill.number).round(3)%></td>
       <td><%= h(bill.comment)%></td>
-      <td><%= link_to 'Destroy', bill_path(bill, table_id: @bill_table.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Destroy', bill_path(bill, table_id: @bill_table.id), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"%></td>
     </tr>
     <% $total_price = $total_price + item.price*bill.number %>
    <% end %>
   <% end %>
 </table>
-<p>
+<h2>
+<span class="label label-default">
+  <strong>备注:</strong>
+  <%= @bill_table.comment %>
+</span><br /><br />
+<span class="label label-primary">
   <strong>Total price:</strong>
   <% @bill_table.total_price = $total_price %>
   <% @bill_table.save() %>
   <%= @bill_table.total_price %>
-  <%= @bill_table.comment %>
-</p>
-
-<%= form_for([@bill_table, Bill.new]) do |f| %>
-  <%= f.label :item_code %><br>
-  <div class="field">
-  <%= f.select :item_id, Item.all.collect{ |c| [c.code_id, c.id] } %>
-  </div>
-  <div class="field">
-    <%= f.label :number %><br>
-    <%= f.number_field :number, value: 0 %><br>
-    <%= f.label :comment %><br>
-    <%= f.text_field :comment %>
-  </div>
- <p><%= f.submit "Add" %></p>
+</span>
+</h2>
+<div class="container">
+<h2 class="form-signin-heading">添加项目:</h2>
+<%= form_for([@bill_table, Bill.new]) do |f|%>
+  <table class="table">
+    <tr>
+    <td><%= f.label :"item_code/产品代码" %></td>
+    <td><%= f.select :item_id, Item.all.collect{ |c| [c.code_id, c.id] } %></td>
+    <tr>
+    <td><%= f.label :"number/数量" %></td>
+    <td><%= f.number_field :number, value: 0 %></td>
+    </tr>
+    <tr>
+    <td><%= f.label :"comment/备注" %></td>
+    <td><%= f.text_field :comment %></td>
+    </tr>
+    <tr><td></td>
+    <td><%= f.submit "Add", class:"btn btn-primary"%></td>
+    </tr>
+  </table>
 <% end %>
-<%= link_to 'Edit', edit_bill_table_path(@bill_table) %> |
-<%= link_to 'Back', bill_tables_path %>
+</div>
+<%= link_to 'Edit', edit_bill_table_path(@bill_table), class:"btn btn-primary" %> |
+<%= link_to 'Back', bill_tables_path, class:"btn btn-default" %>

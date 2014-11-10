@@ -5,25 +5,34 @@
 
       <ul>
       <% @item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <div class="alert alert-info" role="alert">
+          <li><%= message %></li>
+        </div>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :code_id %><br>
-    <%= f.text_field :code_id %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit class:'btn btn-primary' %>
-  </div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+<div class="panel-heading">产品信息:</div>
+  <div class="panel-body">
+  <table class="table">
+   <tr>
+    <td><%= f.label :code_id %></td>
+    <td><%= f.text_field :code_id %></td>
+   </tr>
+   <tr>
+    <td><%= f.label :price %></td>
+    <td><%= f.text_field :price %></td>
+   </tr>
+   <tr>
+    <th><%= f.label :name %></td>
+    <td><%= f.text_field :name %></td>
+   </tr>
+    <td></td>
+    <td><%= f.submit class:'btn btn-primary' %></td>
+  </table>
+</div>
+</div>
 <% end %>

@@ -1,19 +1,27 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Code:</strong>
-  <%= @item.code_id %>
-</p>
-
-<p>
-  <strong> price:</strong>
-  <%= @item. price %>
-</p>
-
-<p>
-  <strong> name:</strong>
-  <%= @item. name %>
-</p>
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<div class="jumbotron">
+	<p id="notice"><%= notice %></p>
+</div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+<div class="panel-heading">产品信息:</div>
+  <div class="panel-body">
+	<table class="table">
+	  <tr><td>
+	  	<strong>Code:</strong></td>
+	  	<td><%= @item.code_id %></td>
+	  </tr>
+	<tr><td>
+	  <strong> price:</strong></td>
+	  <td><%= @item. price %></td>
+	</tr>
+	<tr><td>
+	  <strong> name:</strong></td>
+	  <td><%= @item. name %></td>
+	</tr>
+	<tr><td>
+	<%= link_to 'Edit', edit_item_path(@item), class:"btn btn-primary" %></td>
+	<td><%= link_to 'Back', items_path, class:"btn btn-default"%></td>
+	</tr>
+	</table>
+ </div>
+</div>

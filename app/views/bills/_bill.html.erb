@@ -1,5 +1,5 @@
 <%=div_for bill do%>
-    <% item = Item.find(bill.item_id)%>
+   <% item = Item.find(bill.item_id)%>
     <tr>
       <td><%= h(item.code_id)%></td>
       <td><%= h(item.name)%></td>

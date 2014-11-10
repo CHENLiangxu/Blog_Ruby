@@ -1,27 +1,40 @@
-<h1>Listing bill_tables</h1>
-
-<table>
+<div class="jumbotron">
+  <%= notice %>
+</div>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+<div class="panel-heading">账单列表:</div>
+<div class="panel-body">
+<table class="table">
   <thead>
     <tr>
-      <th>Total price</th>
-      <th colspan="3"></th>
+      <th>#</th>
+      <th>总价</th>
+      <th>创建时间</th>
+      <th>备注</th>
+      <th>操作</th>
     </tr>
   </thead>
 
   <tbody>
     <% @bill_tables.each do |bill_table| %>
       <tr>
+        <td><%= bill_table.id %></td>
         <td><%= bill_table.total_price %></td>
         <td><%= bill_table.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td><%= bill_table.comment %></td>
-        <td><%= link_to 'Show', bill_table %></td>
-        <td><%= link_to 'Edit', edit_bill_table_path(bill_table) %></td>
-        <td><%= link_to 'Destroy', bill_table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <div class="btn-group">
+          <%= link_to 'Show', bill_table, class:"btn btn-info" %>
+          <%= link_to 'Edit', edit_bill_table_path(bill_table), class:"btn btn-primary" %>
+          <%= link_to 'Destroy', bill_table, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= link_to 'New Bill table', new_bill_table_path, class:"btn btn-primary"%>
+</div>
+</div>
 
-<br>
-
-<%= link_to 'New Bill table', new_bill_table_path %>

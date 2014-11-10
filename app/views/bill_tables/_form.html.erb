@@ -5,18 +5,27 @@
 
       <ul>
       <% @bill_table.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <div class="alert alert-info" role="alert">
+          <li><%= message %></li>
+        </div>
       <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_field :comment, :value => "client" %><br>
-    <%= f.hidden_field :total_price, :value => 0 %><br>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+<div class="panel-heading">新建账单:</div>
+  <div class="panel-body">
+  <table class="table">
+    <tr>
+      <td><%= f.label :"comment/备注" %></td>
+      <td><%= f.text_field :comment, :value => "client" %></td>
+    </tr>
+    <tr>
+      <td><%= f.hidden_field :total_price, :value => 0 %></td>
+      <td><%= f.submit class:"btn btn-primary"%></td>
+    </tr>
+  </table>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
 <% end %>
