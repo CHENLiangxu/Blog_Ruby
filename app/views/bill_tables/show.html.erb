@@ -20,7 +20,7 @@
       <td><%= h(bill.comment)%></td>
       <td><%= link_to 'Destroy', bill_path(bill, table_id: @bill_table.id), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"%></td>
     </tr>
-    <% $total_price = $total_price + item.price*bill.number %>
+    <% $total_price = $total_price + (item.price*bill.number).round(3) %>
    <% end %>
   <% end %>
 </table>
